@@ -36,5 +36,5 @@ class lifegoals{
 	} 
 }
 
-$betaOBJ = new beta();
+$betaOBJ = new lifegoals();
 ?>
