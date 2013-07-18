@@ -88,7 +88,7 @@ class lifegoals{
 
 	public function registerUser($fistname, $lastname, $email, $password, $username, $ip. $code){
 		$stmt = $this->db->prepare('INSERT INTO users (Firstname, Lastname, Email, Password, Code, Activation) 
-									VALUES (:first, :last, :email, :pass, :ip, :code, :activation)');
+					VALUES (:first, :last, :email, :pass, :ip, :code, :activation)');
 
 		$activation = 0;
 		$data->bindParam(":first", $firstname);
@@ -176,8 +176,9 @@ class lifegoals{
 			while($row = $stmt->fetch()){$data[] = $row;}
 
     		return $data;
-    	}
-    	else{
+		}
+    	
+		else {
     		return "error with getting the content";
     	}
 	}
@@ -357,7 +358,7 @@ class lifegoals{
 	**/
 
 	public function Useridandlist($userId, $itemId){
-		$stmt = $this->db->prepare("SELECT * FROM table_name 
+		$stmt = $this->db->prepare("SELECT * FROM lists 
 									WHERE item_id=:itemId AND User_id=:userId");
 		
 		$data->bindParam(":itemId", $itemId);
@@ -453,6 +454,66 @@ class lifegoals{
     	}
     	else {
     		print "error with getting the content";
+    	}
+	}
+
+	/**
+		getFollowers method
+		
+		@paras - $userId, 
+		 
+		A Method for getting all the followers for the user
+	**/
+
+	public function getFollowers($userId){
+		$stmt = $this->db->prepare("SELECT relationship.*, users.*
+									FROM relationship
+									LEFT JOIN users
+									ON relationship.Follower_id=users.User_id
+									WHERE users.User_id = :userId");
+
+		$data->bindParam(":userId", $userId);
+		$data->execute;
+
+		if($data->execute()){
+			$data = array();
+
+			while($row = $stmt->fetch()){$data[] = $row;}
+
+    		return $data;
+    	}
+    	else {
+    		return "error with getting the content";
+    	}
+	}
+
+	/**
+		getFollowing method
+		
+		@paras - $userId, 
+		 
+		A Method for getting all the following for the user
+	**/
+
+	public function getFollowing($userId){
+		$stmt = $this->db->prepare("SELECT relationship.*, users.*
+									FROM relationship
+									LEFT JOIN users
+									ON relationship.Following_id=users.User_id
+									WHERE users.User_id = :userId");
+
+		$data->bindParam(":userId", $userId);
+		$data->execute;
+
+		if($data->execute()){
+			$data = array();
+
+			while($row = $stmt->fetch()){$data[] = $row;}
+
+    		return $data;
+    	}
+    	else {
+    		return "error with getting the content";
     	}
 	}
 }
