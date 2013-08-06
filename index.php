@@ -7,18 +7,31 @@ require "classes.php";
 <html>
 
 <head>
-<html>
 
-<title>LifeGoals App - Welcome</title>
+<?php
+	require "header.php";
+?>
 
 </head>
 
+<?php
+	require "navbar.php";
+?>
+
 <body>
 
-<h1>Welcome</h1>
+<div class="container">
+
+	<h1>Welcome</h1>
+
+<?php
+	require 'footer.php';
+?>
+
+<hr>
+
+</div> <!---container-->
 
 </body>
-
-</html>
 
 </html>

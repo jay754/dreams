@@ -42,6 +42,36 @@ class lifegoals{
 	}
 
 	/**
+		the gravatar Method
+		
+		@paras - $currentUserEmail
+		
+		Getting the current Users gravatar if they have one
+	**/
+
+	public static function gravatar($currentUserEmail){
+		$gravatar_email = MD5($currentUserEmail);
+		$gravatar_url = "https://secure.gravatar.com/avatar/".$gravatar_email;
+
+		return $gravatar_url;
+	}
+
+
+	/**
+		the redirect Method
+		
+		@paras - None
+		
+		Redirecting the user if logged in
+	**/
+
+	public static function redirect(){
+		if(loggedin()){
+			header('Location: index.php');	
+		}
+	}
+
+	/**
 		getUsers Method
 		
 		@paras - none

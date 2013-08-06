@@ -6,11 +6,19 @@ require "classes.php";
 
 <head>
 
-<title>Login - LifeGoals App</title>
+<?php
+	require "header.php";
+?>
 
 </head>
 
+<?php
+	require "navbar.php";
+?>
+
 <body>
+
+<div class="container">
 
 <form action='login.php' method='post'>
 Username: <br /> <input type='text' name='username'/> <br />
@@ -43,6 +51,14 @@ if((isset($_POST["username"])&&isset($_POST["password"]))&&(!empty($_POST["usern
 		}
 }
 ?>
+
+<?php
+require "footer.php";
+?>
+
+<hr>
+
+</div> <!--container--> 
 
 </body>
 
