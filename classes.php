@@ -179,16 +179,16 @@ class dreams{
 		To see whether or not the user has been activated on the site
 	**/
 
-	public function checkActivation($userId){
-		$stmt = $this->db->prepare("SELECT * FROM users WHERE User_id=:id");
-		$data->bindParam(":id", $userId);
-		$data->execute();
-		$result = $data->fetch(PDO::FETCH_ASSOC);
+    public function checkActivation($userId){
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE User_id=:id");
+        $data->bindParam(":id", $userId);
+        $data->execute();
+        $result = $data->fetch(PDO::FETCH_ASSOC);
 
-		if($result['Activation'] == 0){
-			return "You have not been activated for this site";
-		}
-	}
+        if($result['Activation'] == 0){
+            return "You have not been activated for this site";
+        }
+    }
 
 	/**
 		selectCode Method
@@ -198,23 +198,25 @@ class dreams{
 		To Display the id of the unique key given to the user to activate the account
 	**/
 
-	public function selectCode($codeId){
-		$stmt = $this->db->prepare("SELECT * FROM users WHERE Code=:code");
-		$data->bindParam(":code", $codeID);
-		$data->execute();
+    public function selectCode($codeId){
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE Code=:code");
+        $data->bindParam(":code", $codeID);
+        $data->execute();
 
-		if($stmt->execute()){
-			$data = array();
+        if($stmt->execute()){
+            $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                $data[] = $row;
+            }
 
-    		return $data;
-		}
+            return $data;
+        }
     	
-		else {
-    		return "error with getting the content";
-    	}
-	}
+        else {
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		updateUser Method
@@ -224,18 +226,18 @@ class dreams{
 		Updating the user from 0 to 1 if clicked the right link after sent to email
 	**/
 
-	public function updateUser($codeID){
-		$stmt = $this->db->prepare("UPDATE users SET Activation='1' WHERE Code=:code");
-		$data->bindParam(":code", $codeID);
-		$data->execute();
+    public function updateUser($codeID){
+        $stmt = $this->db->prepare("UPDATE users SET Activation='1' WHERE Code=:code");
+        $data->bindParam(":code", $codeID);
+        $data->execute();
 
-		if($data->execute()){
-			print "your account is now active";
-		}
-		else{
-			print "there was an error with updating";
-		}
-	}
+        if($data->execute()){
+            print "your account is now active";
+        }
+        else{
+            print "there was an error with updating";
+        }
+    }
 
 	/**
 		getCurrentUser method
@@ -246,23 +248,25 @@ class dreams{
 	**/
 
 	public function getCurrentUser($userid){
-		$stmt = $this->db->prepare('SELECT * FROM users 
-									WHERE User_id = :id');
+        $stmt = $this->db->prepare('SELECT * FROM users 
+                                    WHERE User_id = :id');
 
-		$data->bindParam(":id", $userid);
-		$data->execute();
+        $data->bindParam(":id", $userid);
+        $data->execute();
 
-		if($data->execute()){
-			$data = array();
+        if($data->execute()){
+            $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                $data[] = $row;
+            }
 
-    		return $data;
-    	}
-    	else {
-    		return "error with getting the content";
-    	}
-	}
+            return $data;
+        }
+        else {
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		Create List method
