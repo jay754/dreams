@@ -146,7 +146,7 @@ class dreams{
             else {
                echo "an error in sending email";
             }
-		}
+        }
         else{
             echo "error in inserting into database";
         }
@@ -160,16 +160,16 @@ class dreams{
 		To check whether or not the current user is banned from the site
 	**/
 
-	public function banIP($userId){
-		$stmt = $this->db->prepare("SELECT * FROM users WHERE User_id=:id");
-		$data->bindParam(":id", $userId);
-		$data->execute();
-		$result = $data->fetch(PDO::FETCH_ASSOC);
+    public function banIP($userId){
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE User_id=:id");
+        $data->bindParam(":id", $userId);
+        $data->execute();
+        $result = $data->fetch(PDO::FETCH_ASSOC);
 
-		if($result['banned'] == 1){
-			return "You have been banned from this site";
-		}
-	}
+        if($result['banned'] == 1){
+            return "You have been banned from this site";
+        }
+    }
 
 	/**
 		checkActivation Method
