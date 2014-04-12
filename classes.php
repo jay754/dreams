@@ -11,7 +11,7 @@
 
 session_start(); //session start
 
-class lifegoals{
+class dreams{
 
 	//main class for the entire website
 
@@ -32,7 +32,7 @@ class lifegoals{
 		Setting up the db for the rest of the class so don't have to keep reopening connection to db
 	**/
 
-	function __construct(){
+    function __construct(){
         try {
             $this->db = new PDO('mysql:host=localhost;dbname=beta', "root", "");
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -54,7 +54,7 @@ class lifegoals{
         $gravatar_url = "https://secure.gravatar.com/avatar/".$gravatar_email;
 
         return $gravatar_url;
-	}
+    }
 
 
 	/**
