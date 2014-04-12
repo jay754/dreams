@@ -22,7 +22,7 @@ class lifegoals{
 	2. add update user method
 	*/
 
-	public $db = null; //this is the db handeler for the entire class
+    public $db = null; //this is the db handeler for the entire class
 
 	/**
 		the constructor Method
@@ -33,13 +33,13 @@ class lifegoals{
 	**/
 
 	function __construct(){
-		try {
-	    	$this->db = new PDO('mysql:host=localhost;dbname=beta', "root", "");
-	    	$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            $this->db = new PDO('mysql:host=localhost;dbname=beta', "root", "");
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch(PDOException $e) {
-	    	echo 'ERROR: ' . $e->getMessage();
-		}
-	}
+          echo 'ERROR: ' . $e->getMessage();
+	    }
+    }
 
 	/**
 		the gravatar Method
@@ -50,10 +50,10 @@ class lifegoals{
 	**/
 
 	public static function gravatar($currentUserEmail){
-		$gravatar_email = MD5($currentUserEmail);
-		$gravatar_url = "https://secure.gravatar.com/avatar/".$gravatar_email;
+        $gravatar_email = MD5($currentUserEmail);
+        $gravatar_url = "https://secure.gravatar.com/avatar/".$gravatar_email;
 
-		return $gravatar_url;
+        return $gravatar_url;
 	}
 
 
@@ -66,9 +66,9 @@ class lifegoals{
 	**/
 
 	public static function redirect(){
-		if(loggedin()){
-			header('Location: index.php');	
-		}
+        if(loggedin()){
+            header('Location: index.php');	
+        }
 	}
 
 	/**
@@ -80,18 +80,20 @@ class lifegoals{
 	**/
 
 	public function getUsers(){
-		$stmt = $this->db->prepare('SELECT * FROM users');
-		if($stmt->execute()){
-			$data = array();
+        $stmt = $this->db->prepare('SELECT * FROM users');
+        if($stmt->execute()){
+            $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                     $data[] = $row;
+            }
 
-    		return $data;
+            return $data;
     	}
-    	else{
-    		return "error with getting the content";
-    	}
-	}
+        else{
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		loggedin Method
@@ -102,10 +104,10 @@ class lifegoals{
 	**/
 
 	public function loggedin(){
-		if ((isset($_SESSION['name']))){
-			return True;
-		}
-	}
+        if ((isset($_SESSION['name']))){
+            return True;
+        }
+    }
 
 	/**
 		registerUser Method
@@ -117,37 +119,36 @@ class lifegoals{
 	**/
 
 	public function registerUser($fistname, $lastname, $email, $password, $username, $ip. $code){
-		$stmt = $this->db->prepare('INSERT INTO users (Firstname, Lastname, Email, Password, Code, Activation) 
-					VALUES (:first, :last, :email, :pass, :ip, :code, :activation)');
+        $stmt = $this->db->prepare('INSERT INTO users (Firstname, Lastname, Email, Password, Code, Activation) 
+                                    VALUES (:first, :last, :email, :pass, :ip, :code, :activation)');
 
-		$activation = 0;
-		$data->bindParam(":first", $firstname);
-		$data->bindParam(":last", $lastname);
-		$data->bindParam(":email", $email);
-		$data->bindParam(":pass", md5($password));
-		$data->bindParam(":ip", $ip);
-		$data->bindParam(":code", $code);
-		$data->bindParam(":activation", $activation);
-		$data->execute();
+        $activation = 0;
+        $data->bindParam(":first", $firstname);
+        $data->bindParam(":last", $lastname);
+        $data->bindParam(":email", $email);
+        $data->bindParam(":pass", md5($password));
+        $data->bindParam(":ip", $ip);
+        $data->bindParam(":code", $code);
+        $data->bindParam(":activation", $activation);
+        $data->execute();
 
-		if($data->execute()){
-			$to = $email;
-			$subject = "email activation";
-			$headers = "from: infolifegoals.com";
-			$body = "Please click the following link to activate your account activate.php/?code=".$code;
+        if($data->execute()){
+            $to = $email;
+            $subject = "email activation";
+            $headers = "from: infolifegoals.com";
+            $body = "Please click the following link to activate your account activate.php/?code=".$code;
 			
-			if(mailto($to, $subject, $body, $headers)){
-				print "An Email has been sent";
+            if(mailto($to, $subject, $body, $headers)){
+               echo "An Email has been sent";
 			}
-			
-			else {
-				print "an error in sending email";
+            else {
+               echo "an error in sending email";
 			}
 		}
-		else{
-			print "error in inserting into database";
-		}
-	}
+        else{
+            echo "error in inserting into database";
+        }
+    }
 
 	/**
 		banIP Method
