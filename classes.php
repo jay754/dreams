@@ -482,25 +482,25 @@ class Dreams{
 		A Method for editing and than updating a list Id
 	**/
 
-	public function editList($title, $desc, $item_id, $user_id){
-		$stmt = $this->db->prepare("UPDATE lists 
-									SET Title=:title, Desc=:desc
-									WHERE item_id=:itemid 
-									AND User_id=:userId");
+    public function editList($title, $desc, $item_id, $user_id){
+        $stmt = $this->db->prepare("UPDATE lists 
+                                    SET Title=:title, Desc=:desc
+                                    WHERE item_id=:itemid 
+                                    AND User_id=:userId");
 		
-		$data->bindParam(":title", $title);
-		$data->bindParam(":desc", $desc);
-		$data->bindParam(":itemid", $item);
-		$data->bindParam(":userid", $user_id);
-		$data->execute;
+        $data->bindParam(":title", $title);
+        $data->bindParam(":desc", $desc);
+        $data->bindParam(":itemid", $item);
+        $data->bindParam(":userid", $user_id);
+        $data->execute;
 
-		if($data->execute()){
-			print "saved succesfully";
-    	}
-    	else {
-    		print "error with getting the content";
-    	}
-	}
+        if($data->execute()){
+            print "saved succesfully";
+        }
+        else {
+            print "error with getting the content";
+        }
+    }
 
 	/**
 		getFollowers method
@@ -510,27 +510,29 @@ class Dreams{
 		A Method for getting all the followers for the user
 	**/
 
-	public function getFollowers($userId){
-		$stmt = $this->db->prepare("SELECT relationship.*, users.*
-									FROM relationship
-									LEFT JOIN users
-									ON relationship.Follower_id=users.User_id
-									WHERE users.User_id = :userId");
+    public function getFollowers($userId){
+        $stmt = $this->db->prepare("SELECT relationship.*, users.*
+                                    FROM relationship
+                                    LEFT JOIN users
+                                    ON relationship.Follower_id=users.User_id
+                                    WHERE users.User_id = :userId");
 
-		$data->bindParam(":userId", $userId);
-		$data->execute;
+        $data->bindParam(":userId", $userId);
+        $data->execute;
 
-		if($data->execute()){
-			$data = array();
+        if($data->execute()){
+            $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                $data[] = $row;
+            }
 
-    		return $data;
-    	}
-    	else {
-    		return "error with getting the content";
-    	}
-	}
+            return $data;
+        }
+        else {
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		getFollowing method
@@ -540,27 +542,29 @@ class Dreams{
 		A Method for getting all the following for the user
 	**/
 
-	public function getFollowing($userId){
-		$stmt = $this->db->prepare("SELECT relationship.*, users.*
-									FROM relationship
-									LEFT JOIN users
-									ON relationship.Following_id=users.User_id
-									WHERE users.User_id = :userId");
+    public function getFollowing($userId){
+        $stmt = $this->db->prepare("SELECT relationship.*, users.*
+                                    FROM relationship
+                                    LEFT JOIN users
+                                    ON relationship.Following_id=users.User_id
+                                    WHERE users.User_id = :userId");
 
-		$data->bindParam(":userId", $userId);
-		$data->execute;
+        $data->bindParam(":userId", $userId);
+        $data->execute;
 
-		if($data->execute()){
+        if($data->execute()){
 			$data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                $data[] = $row;
+            }
 
-    		return $data;
-    	}
-    	else {
-    		return "error with getting the content";
-    	}
-	}
+            return $data;
+        }
+        else {
+            return "error with getting the content";
+        }
+    }
 }
 
 $betaOBJ = new Dreams();
