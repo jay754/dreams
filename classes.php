@@ -142,10 +142,10 @@ class dreams{
 			
             if(mailto($to, $subject, $body, $headers)){
                echo "An Email has been sent";
-			}
+            }
             else {
                echo "an error in sending email";
-			}
+            }
 		}
         else{
             echo "error in inserting into database";
