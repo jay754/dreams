@@ -37,7 +37,7 @@ class dreams{
             $this->db = new PDO('mysql:host=localhost;dbname=beta', "root", "");
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
-		catch(PDOException $e) {
+        catch(PDOException $e) {
            echo 'ERROR: ' . $e->getMessage();
         }
     }
@@ -105,7 +105,7 @@ class dreams{
 		Returns if the user is logged in or not
 	**/
 
-	public function loggedin(){
+    public function loggedin(){
         if ((isset($_SESSION['name']))){
             return True;
         }
