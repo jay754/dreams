@@ -36,9 +36,10 @@ class dreams{
         try {
             $this->db = new PDO('mysql:host=localhost;dbname=beta', "root", "");
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		} catch(PDOException $e) {
-          echo 'ERROR: ' . $e->getMessage();
-	    }
+		}
+		catch(PDOException $e) {
+           echo 'ERROR: ' . $e->getMessage();
+        }
     }
 
 	/**
@@ -65,7 +66,7 @@ class dreams{
 		Redirecting the user if logged in
 	**/
 
-	public static function redirect(){
+    public static function redirect(){
         if(loggedin()){
             header('Location: index.php');	
         }
@@ -79,17 +80,18 @@ class dreams{
 		Returns the all the users of the website
 	**/
 
-	public function getUsers(){
+    public function getUsers(){
         $stmt = $this->db->prepare('SELECT * FROM users');
+
         if($stmt->execute()){
             $data = array();
 
             while($row = $stmt->fetch()){
-                     $data[] = $row;
+                $data[] = $row;
             }
 
             return $data;
-    	}
+        }
         else{
             return "error with getting the content";
         }
