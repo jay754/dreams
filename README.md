@@ -1,4 +1,4 @@
-lifegoals-app
+Dreams
 =============
 
-a site for putting up life goals
+source code for lifelyst site
