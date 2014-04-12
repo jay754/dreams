@@ -7,13 +7,13 @@ require "classes.php";
 <head>
 
 <?php
-	require "header.php";
+    require "header.php";
 ?>
 
 </head>
 
 <?php
-	require "navbar.php";
+    require "navbar.php";
 ?>
 
 <body>
@@ -56,7 +56,7 @@ if((isset($_POST["username"])&&isset($_POST["password"]))&&(!empty($_POST["usern
 ?>
 
 <?php
-require "footer.php";
+    require "footer.php";
 ?>
 
 <hr>
