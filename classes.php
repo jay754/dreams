@@ -365,7 +365,7 @@ class Dreams{
 		Had to do a left join with the user table and feed table using the current user Id
 	**/
 
-	public function getFeedforUser($userID){
+    public function getFeedforUser($userID){
         $stmt = $this->db->prepare("SELECT users.User_id, feed.*
                                     FROM users
                                     LEFT JOIN feed
@@ -453,24 +453,26 @@ class Dreams{
 		A Method for displaying a list Id
 	**/
 
-	public function displayList($listId){
-		$stmt = $this->db->prepare("SELECT * FROM lists 
-									WHERE item_id=:id";
+    public function displayList($listId){
+        $stmt = $this->db->prepare("SELECT * FROM lists 
+                                    WHERE item_id=:id";
 	
-		$data->bindParam(":id", $listId);
-		$data->execute;
+        $data->bindParam(":id", $listId);
+        $data->execute;
 
-		if($data->execute()){
-			$data = array();
+        if($data->execute()){
+            $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                $data[] = $row;
+            }
 
-    		return $data;
-    	}
-    	else {
-    		return "error with getting the content";
-    	}
-	}
+            return $data;
+        }
+        else {
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		editList method
