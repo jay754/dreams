@@ -11,7 +11,7 @@
 
 session_start(); //session start
 
-class dreams{
+class Dreams{
 
 	//main class for the entire website
 
@@ -320,7 +320,7 @@ class dreams{
         else {
             print "error with getting the content";
         }
-	}
+    }
 
 	/**
 		getListsforUser Feed method
@@ -331,28 +331,30 @@ class dreams{
 		Had to do a left join with the user table and lists table using the current user Id
 	**/
 
-	public function getListsforUser($userid){
-		$stmt = $this->db->prepare('SELECT users.User_id, lists.*
-					  				FROM users
-					  				LEFT JOIN lists
-					  				ON users.User_id=lists.User_id
-					  				WHERE users.User_id = :id
-					  				ORDER BY DATE ASC');
+    public function getListsforUser($userid){
+        $stmt = $this->db->prepare('SELECT users.User_id, lists.*
+                                    FROM users
+                                    LEFT JOIN lists
+                                    ON users.User_id=lists.User_id
+                                    WHERE users.User_id = :id
+                                    ORDER BY DATE ASC');
 		
-		$data->bindParam(":id", $id);
-		$data->execute;
+        $data->bindParam(":id", $id);
+        $data->execute;
 
-		if($data->execute()){
-			$data = array();
+        if($data->execute()){
+           $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+            	$data[] = $row;
+            }
 
-    		return $data;
-    	}
-    	else {
-    		return "error with getting the content";
-    	}
-	}
+            return $data;
+        }
+        else {
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		getfeedforUser method
@@ -364,27 +366,29 @@ class dreams{
 	**/
 
 	public function getFeedforUser($userID){
-		$stmt = $this->db->prepare("SELECT users.User_id, feed.*
-					  				FROM users
-								  	LEFT JOIN feed
-								 	ON users.User_id=feed.User_id
-								 	WHERE users.User_id = :id
-								  	ORDER BY DATE DESC LIMIT 15");
+        $stmt = $this->db->prepare("SELECT users.User_id, feed.*
+                                    FROM users
+                                    LEFT JOIN feed
+                                    ON users.User_id=feed.User_id
+                                    WHERE users.User_id = :id
+                                    ORDER BY DATE DESC LIMIT 15");
 
-		$data->bindParam(":id", $id);
-		$data->execute;
+        $data->bindParam(":id", $id);
+        $data->execute;
 
-		if($data->execute()){
-			$data = array();
+        if($data->execute()){
+            $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                $data[] = $row;
+            }
 
-    		return $data;
-    	}
-    	else {
-    		return "error with getting the content";
-    	}
-	}
+            return $data;
+        }
+        else {
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		Useridandlist Feed method
@@ -394,25 +398,27 @@ class dreams{
 		A Method for listing the item along with user who owns it so no one else can edit or delete the list
 	**/
 
-	public function Useridandlist($userId, $itemId){
-		$stmt = $this->db->prepare("SELECT * FROM lists 
-									WHERE item_id=:itemId AND User_id=:userId");
+	public function UserIdandlist($userId, $itemId){
+        $stmt = $this->db->prepare("SELECT * FROM lists 
+                                    WHERE item_id=:itemId AND User_id=:userId");
 		
-		$data->bindParam(":itemId", $itemId);
-		$data->bindParam(":userId", $userId);
-		$data->execute();
+        $data->bindParam(":itemId", $itemId);
+        $data->bindParam(":userId", $userId);
+        $data->execute();
 
-		if($stmt->execute()) {
-			$data = array();
+        if($stmt->execute()) {
+            $data = array();
 
-			while($row = $stmt->fetch()){$data[] = $row;}
+            while($row = $stmt->fetch()){
+                $data[] = $row;
+            }
 
-    		return $data;
-    	}
-    	else {
-    		return "error with getting the content";
-    	}
-	}
+            return $data;
+        }
+        else {
+            return "error with getting the content";
+        }
+    }
 
 	/**
 		deleteList method
@@ -555,5 +561,5 @@ class dreams{
 	}
 }
 
-$betaOBJ = new lifegoals();
+$betaOBJ = new Dreams();
 ?>
