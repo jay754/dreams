@@ -247,7 +247,7 @@ class dreams{
 		getting the current user on the homepage and displaying info or to update info
 	**/
 
-	public function getCurrentUser($userid){
+    public function getCurrentUser($userid){
         $stmt = $this->db->prepare('SELECT * FROM users 
                                     WHERE User_id = :id');
 
