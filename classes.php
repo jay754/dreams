@@ -312,7 +312,7 @@ class Dreams{
         $data->bindParam(":desc", $action);
         $data->bindParam(":date", "NOW()");
         $data->bindParam(":date", $listid);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
             print "post succesfully inserted";
@@ -340,7 +340,7 @@ class Dreams{
                                     ORDER BY DATE ASC');
 		
         $data->bindParam(":id", $id);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
            $data = array();
@@ -374,7 +374,7 @@ class Dreams{
                                     ORDER BY DATE DESC LIMIT 15");
 
         $data->bindParam(":id", $id);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
             $data = array();
@@ -435,7 +435,7 @@ class Dreams{
 
         $data->bindParam(":id", $id);
         $data->bindParam(":userId", $userId);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
             print "list destroyed"
@@ -458,7 +458,7 @@ class Dreams{
                                     WHERE item_id=:id";
 	
         $data->bindParam(":id", $listId);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
             $data = array();
@@ -492,7 +492,7 @@ class Dreams{
         $data->bindParam(":desc", $desc);
         $data->bindParam(":itemid", $item);
         $data->bindParam(":userid", $user_id);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
             print "saved succesfully";
@@ -518,7 +518,7 @@ class Dreams{
                                     WHERE users.User_id = :userId");
 
         $data->bindParam(":userId", $userId);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
             $data = array();
@@ -550,7 +550,7 @@ class Dreams{
                                     WHERE users.User_id = :userId");
 
         $data->bindParam(":userId", $userId);
-        $data->execute;
+        $data->execute();
 
         if($data->execute()){
 			$data = array();
