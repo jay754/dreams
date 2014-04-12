@@ -39,13 +39,13 @@ if((isset($_POST["username"])&&isset($_POST["password"]))&&(!empty($_POST["usern
         $data->execute();
         $result = $data->fetch(PDO::FETCH_ASSOC);
 	    
-	    if($data->execute()==1){
+        if($data->execute()==1){
             $_SESSION["id"] = $result["P_id"];
             $_SESSION["name"] = $result["FirstName"];
 
             header('Location: index.php');
 	    }
-	    else{
+        else{
 	    	print "wrong combo";
         }
     }catch(PDOException $e) {
