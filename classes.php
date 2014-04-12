@@ -24,9 +24,9 @@ class Dreams{
 
     public $db = null; //this is the db handeler for the entire class
 
-	/**
-		the constructor Method
-		
+    /**
+        the constructor Method
+	
 		@paras - none
 		
 		Setting up the db for the rest of the class so don't have to keep reopening connection to db
@@ -565,7 +565,8 @@ class Dreams{
             return "error with getting the content";
         }
     }
-}
+
+} //end of the class
 
 $betaOBJ = new Dreams();
 ?>
