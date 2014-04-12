@@ -49,7 +49,7 @@ class dreams{
 		Getting the current Users gravatar if they have one
 	**/
 
-	public static function gravatar($currentUserEmail){
+    public static function gravatar($currentUserEmail){
         $gravatar_email = MD5($currentUserEmail);
         $gravatar_url = "https://secure.gravatar.com/avatar/".$gravatar_email;
 
@@ -69,7 +69,7 @@ class dreams{
         if(loggedin()){
             header('Location: index.php');	
         }
-	}
+    }
 
 	/**
 		getUsers Method
