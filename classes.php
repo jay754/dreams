@@ -120,7 +120,7 @@ class dreams{
 		Also emails the user with the activation link
 	**/
 
-	public function registerUser($fistname, $lastname, $email, $password, $username, $ip. $code){
+    public function registerUser($fistname, $lastname, $email, $password, $username, $ip. $code){
         $stmt = $this->db->prepare('INSERT INTO users (Firstname, Lastname, Email, Password, Code, Activation) 
                                     VALUES (:first, :last, :email, :pass, :ip, :code, :activation)');
 
