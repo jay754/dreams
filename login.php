@@ -44,7 +44,7 @@ if((isset($_POST["username"])&&isset($_POST["password"]))&&(!empty($_POST["usern
             $_SESSION["name"] = $result["FirstName"];
 
             header('Location: index.php');
-	    }
+        }
         else{
 	    	print "wrong combo";
         }
