@@ -398,7 +398,7 @@ class Dreams{
 		A Method for listing the item along with user who owns it so no one else can edit or delete the list
 	**/
 
-	public function UserIdandlist($userId, $itemId){
+    public function UserIdandlist($userId, $itemId){
         $stmt = $this->db->prepare("SELECT * FROM lists 
                                     WHERE item_id=:itemId AND User_id=:userId");
 		
@@ -428,22 +428,22 @@ class Dreams{
 		A Method for deleting a list Id
 	**/
 
-	public function deleteList($id, $userId){
-		$stmt = $this->db->prepare("DELETE FROM lists 
-									WHERE item_id=:id 
-									AND User_id=:userId");
+    public function deleteList($id, $userId){
+        $stmt = $this->db->prepare("DELETE FROM lists 
+                                    WHERE item_id=:id
+                                    AND User_id=:userId");
 
-		$data->bindParam(":id", $id);
-		$data->bindParam(":userId", $userId);
-		$data->execute;
+        $data->bindParam(":id", $id);
+        $data->bindParam(":userId", $userId);
+        $data->execute;
 
-		if($data->execute()){
-			print "list destroyed"
-    	}
-    	else {
-    		print "error with getting the content";
-    	}
-	}
+        if($data->execute()){
+            print "list destroyed"
+        }
+        else {
+            print "error with getting the content";
+        }
+    }
 
 	/**
 		displayList method
