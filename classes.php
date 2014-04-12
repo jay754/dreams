@@ -276,23 +276,23 @@ class dreams{
 		A method for creating a list
 	**/
 
-	public function createList($userId, $title, $desc){
-		$stmt = $this->db->prepare('INSERT INTO lists (User_id, Title, Des, date) 
-									VALUES (:id, :title, :desc, :date)');
+    public function createList($userId, $title, $desc){
+        $stmt = $this->db->prepare('INSERT INTO lists (User_id, Title, Des, date) 
+                                    VALUES (:id, :title, :desc, :date)');
 
-		$data->bindParam(":id", $userId);
-		$data->bindParam(":Title", $title);
-		$data->bindParam(":desc", $desc);
-		$data->bindParam(":date", "NOW()");
-		$data->execute;
+        $data->bindParam(":id", $userId);
+        $data->bindParam(":Title", $title);
+        $data->bindParam(":desc", $desc);
+        $data->bindParam(":date", "NOW()");
+        $data->execute;
 
-		if($data->execute()){
-			print "post succesfully inserted";
-    	}
-    	else {
-    		print "error with getting the content";
-    	}
-	}
+        if($data->execute()){
+            print "post succesfully inserted";
+        }
+        else {
+            print "error with getting the content";
+        }
+    }
 
 	/**
 		Insert Feed method
@@ -302,24 +302,24 @@ class dreams{
 		A method for after creating the list and logging the info into db
 	**/
 
-	public function insertFeed($userId, $title, $listid){
-		$stmt = $this->db->prepare('INSERT INTO feed (User_id, feed, Action, date, list_id) 
-									VALUES (:id, :title, :action, :date, :list_id)';
+    public function insertFeed($userId, $title, $listid){
+        $stmt = $this->db->prepare('INSERT INTO feed (User_id, feed, Action, date, list_id) 
+                                    VALUES (:id, :title, :action, :date, :list_id)';
 
-		$action = "created a list";
-		$data->bindParam(":id", $userId);
-		$data->bindParam(":Title", $title);
-		$data->bindParam(":desc", $action);
-		$data->bindParam(":date", "NOW()");
-		$data->bindParam(":date", $listid);
-		$data->execute;
+        $action = "created a list";
+        $data->bindParam(":id", $userId);
+        $data->bindParam(":Title", $title);
+        $data->bindParam(":desc", $action);
+        $data->bindParam(":date", "NOW()");
+        $data->bindParam(":date", $listid);
+        $data->execute;
 
-		if($data->execute()){
-			print "post succesfully inserted";
-    	}
-    	else {
-    		print "error with getting the content";
-    	}
+        if($data->execute()){
+            print "post succesfully inserted";
+        }
+        else {
+            print "error with getting the content";
+        }
 	}
 
 	/**
