@@ -38,7 +38,7 @@ class Dreams{
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
         catch(PDOException $e) {
-           echo 'ERROR: ' . $e->getMessage();
+           print 'ERROR: ' . $e->getMessage();
         }
     }
 
@@ -105,7 +105,7 @@ class Dreams{
 		Returns if the user is logged in or not
 	**/
 
-    public function loggedin(){
+    public function isLoggedin(){
         if ((isset($_SESSION['name']))){
             return True;
         }
@@ -116,8 +116,7 @@ class Dreams{
 		
 		@paras - $firstname, $lastname, $password, $username, $ip, $code
 		
-		Registers the user in the database.
-		Also emails the user with the activation link
+		Registers the user in the database and emails the user with the activation link
 	**/
 
     public function registerUser($fistname, $lastname, $email, $password, $username, $ip. $code){
@@ -141,14 +140,14 @@ class Dreams{
             $body = "Please click the following link to activate your account activate.php/?code=".$code;
 			
             if(mailto($to, $subject, $body, $headers)){
-               echo "An Email has been sent";
+               print "An Email has been sent";
             }
             else {
-               echo "an error in sending email";
+               print "an error in sending email";
             }
         }
         else{
-            echo "error in inserting into database";
+            print "error in inserting into database";
         }
     }
 
@@ -198,7 +197,7 @@ class Dreams{
 		To Display the id of the unique key given to the user to activate the account
 	**/
 
-    public function selectCode($codeId){
+    public function checkCode($codeId){
         $stmt = $this->db->prepare("SELECT * FROM users WHERE Code=:code");
         $data->bindParam(":code", $codeID);
         $data->execute();
@@ -226,7 +225,7 @@ class Dreams{
 		Updating the user from 0 to 1 if clicked the right link after sent to email
 	**/
 
-    public function updateUser($codeID){
+    public function activateUser($codeID){
         $stmt = $this->db->prepare("UPDATE users SET Activation='1' WHERE Code=:code");
         $data->bindParam(":code", $codeID);
         $data->execute();
