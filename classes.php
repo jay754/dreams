@@ -552,7 +552,7 @@ class Dreams{
         $data->execute();
 
         if($data->execute()){
-			$data = array();
+            $data = array();
 
             while($row = $stmt->fetch()){
                 $data[] = $row;
